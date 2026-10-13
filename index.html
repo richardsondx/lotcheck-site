@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LotCheck — Know what you can build on any Toronto lot</title>
+<meta name="description" content="Type a Toronto address. Get the zoning envelope, approval odds from 33,992 past variance decisions, laneway suite eligibility, and development charges. First 3 checks free.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="LotCheck">
+<meta property="og:url" content="https://getlotcheck.com/">
+<meta property="og:title" content="LotCheck — Know what you can build on any Toronto lot">
+<meta property="og:description" content="Zoning envelope, approval odds from 33,992 past variance decisions, laneway suite check, and development charges. First 3 checks free, no card.">
+<meta property="og:image" content="https://getlotcheck.com/og-image.png">
+<meta property="og:image:width" content="1536">
+<meta property="og:image:height" content="1024">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="LotCheck — Know what you can build on any Toronto lot">
+<meta name="twitter:description" content="Zoning envelope, approval odds from 33,992 past variance decisions, laneway suite check, and development charges. First 3 checks free.">
+<meta name="twitter:image" content="https://getlotcheck.com/og-image.png">
+<link rel="canonical" href="https://getlotcheck.com/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23E8590C'/%3E%3Cpath d='M20 33l9 9 15-17' stroke='white' stroke-width='6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --paper:#F6F4EE; --card:#FFFFFF; --ink:#1B1E23; --sub:#5D6672; --faint:#6E777F;
+    --line:#E9E2D2; --accent:#E8590C; --accent-deep:#C24A07; --accent-soft:#FDEBD9;
+    --green:#2B8A3E; --green-soft:#E3F3E6; --radius:22px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Inter,Roboto,sans-serif;
+    background:var(--paper); color:var(--ink);
+    font-size:17px; line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+  /* nav */
+  nav{position:sticky;top:0;z-index:50;background:rgba(246,244,238,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:19px;text-decoration:none;color:var(--ink)}
+  .brand-mark{width:30px;height:30px;border-radius:8px;background:var(--accent);display:inline-flex;align-items:center;justify-content:center}
+  .nav-cta{background:var(--ink);color:#fff;text-decoration:none;font-weight:600;font-size:15px;padding:10px 20px;border-radius:999px;transition:background .2s}
+  .nav-cta:hover{background:var(--accent-deep)}
+  /* hero */
+  .hero{padding:72px 0 56px;overflow:hidden}
+  .hero-grid{display:grid;grid-template-columns:1fr;gap:48px;align-items:center}
+  @media(min-width:900px){.hero-grid{grid-template-columns:1.05fr .95fr}}
+  .eyebrow{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-deep);background:var(--accent-soft);border-radius:999px;padding:6px 14px;margin-bottom:20px}
+  h1{font-size:40px;line-height:1.12;letter-spacing:-.02em;font-weight:800;margin-bottom:18px}
+  @media(min-width:900px){h1{font-size:52px}}
+  .lede{font-size:19px;color:var(--sub);margin-bottom:28px;max-width:34em}
+  .cta-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-bottom:14px}
+  .btn-store{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:#fff;text-decoration:none;font-weight:600;font-size:16px;padding:14px 26px;border-radius:16px;transition:transform .15s,background .2s}
+  .btn-store:hover{background:var(--accent-deep);transform:translateY(-1px)}
+  .btn-store svg{flex:none}
+  .micro{font-size:14px;color:var(--faint)}
+  .micro strong{color:var(--sub)}
+  /* phone */
+  .phone-wrap{display:flex;justify-content:center}
+  .phone{width:300px;border-radius:44px;background:#111;padding:12px;box-shadow:0 30px 80px rgba(27,30,35,.22)}
+  .phone img{width:100%;border-radius:34px;display:block}
+  @media(min-width:900px){.phone{width:320px}}
+  /* proof bar */
+  .proof{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--card)}
+  .proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:28px 0;text-align:center}
+  .proof-num{font-size:30px;font-weight:800;letter-spacing:-.02em}
+  .proof-num span{color:var(--accent)}
+  .proof-label{font-size:14px;color:var(--sub);margin-top:4px}
+  @media(max-width:640px){.proof-num{font-size:22px}.proof-label{font-size:12px}}
+  /* sections */
+  section.block{padding:72px 0}
+  .kicker{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:12px}
+  h2{font-size:30px;letter-spacing:-.02em;font-weight:800;margin-bottom:14px}
+  @media(min-width:900px){h2{font-size:36px}}
+  .section-sub{color:var(--sub);font-size:18px;max-width:36em;margin-bottom:36px}
+  /* steps */
+  .steps{display:grid;grid-template-columns:1fr;gap:16px}
+  @media(min-width:900px){.steps{grid-template-columns:repeat(3,1fr)}}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px}
+  .step-num{width:40px;height:40px;border-radius:50%;background:var(--accent-soft);color:var(--accent-deep);font-weight:800;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:16px}
+  .step h3{font-size:19px;margin-bottom:8px}
+  .step p{color:var(--sub);font-size:16px}
+  /* features */
+  .features{display:grid;grid-template-columns:1fr;gap:16px}
+  @media(min-width:700px){.features{grid-template-columns:repeat(2,1fr)}}
+  .feature{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px}
+  .feature h3{font-size:19px;margin-bottom:8px}
+  .feature p{color:var(--sub);font-size:16px}
+  .tag{display:inline-block;font-size:12px;font-weight:700;background:var(--green-soft);color:var(--green);border-radius:999px;padding:4px 12px;margin-bottom:12px}
+  /* pricing */
+  .plans{display:grid;grid-template-columns:1fr;gap:16px;max-width:880px}
+  @media(min-width:800px){.plans{grid-template-columns:repeat(3,1fr)}}
+  .plan{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:30px 26px;position:relative;display:flex;flex-direction:column}
+  .plan.hot{border:2px solid var(--accent);box-shadow:0 12px 40px rgba(232,89,12,.14)}
+  .plan-flag{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-size:12px;font-weight:700;padding:4px 14px;border-radius:999px;white-space:nowrap}
+  .plan h3{font-size:18px;margin-bottom:6px}
+  .plan-price{font-size:32px;font-weight:800;letter-spacing:-.02em;margin:8px 0 2px}
+  .plan-per{font-size:14px;color:var(--faint);margin-bottom:16px}
+  .plan ul{list-style:none;margin-bottom:24px;flex:1}
+  .plan li{font-size:15px;color:var(--sub);padding:7px 0 7px 26px;position:relative}
+  .plan li::before{content:"";position:absolute;left:2px;top:13px;width:14px;height:8px;border-left:2.5px solid var(--green);border-bottom:2.5px solid var(--green);transform:rotate(-45deg) translateY(-2px)}
+  .plan .fine{font-size:12.5px;color:var(--faint);margin-top:12px;line-height:1.5}
+  /* email capture */
+  .capture{background:var(--ink);border-radius:28px;padding:48px 28px;color:#fff;text-align:center}
+  @media(min-width:800px){.capture{padding:60px}}
+  .capture h2{color:#fff}
+  .capture p{color:#B9BEC6;max-width:32em;margin:0 auto 26px;font-size:17px}
+  .capture form{display:flex;flex-direction:column;gap:12px;max-width:440px;margin:0 auto}
+  @media(min-width:560px){.capture form{flex-direction:row}}
+  .capture input{flex:1;border:none;border-radius:14px;padding:15px 18px;font-size:16px;background:#fff;color:var(--ink)}
+  .capture input:focus{outline:2px solid var(--accent)}
+  .capture button{border:none;border-radius:14px;background:var(--accent);color:#fff;font-weight:700;font-size:16px;padding:15px 28px;cursor:pointer;transition:background .2s}
+  .capture button:hover{background:var(--accent-deep)}
+  .capture .note{font-size:13px;color:#8A9099;margin-top:14px}
+  #capture-msg{font-size:15px;margin-top:14px;min-height:22px;font-weight:600}
+  /* app preview */
+  .screens{display:grid;grid-template-columns:1fr;gap:24px;justify-items:center}
+  @media(min-width:760px){.screens{grid-template-columns:repeat(3,1fr);align-items:start}}
+  .shot{max-width:280px;text-align:center}
+  .shot .phone{width:100%;max-width:260px}
+  .shot p{font-size:15px;color:var(--sub);margin-top:14px}
+  .shot p strong{display:block;color:var(--ink);font-size:16px;margin-bottom:2px}
+  /* final cta */
+  .final{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:56px 28px;text-align:center}
+  @media(min-width:800px){.final{padding:72px}}
+  .final h2{margin-bottom:12px}
+  .final p{color:var(--sub);max-width:30em;margin:0 auto 28px;font-size:18px}
+  /* sticky mobile cta */
+  .sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:60;display:none;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:rgba(246,244,238,.96);backdrop-filter:blur(12px);border-top:1px solid var(--line)}
+  .sticky-cta a{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--accent);color:#fff;text-decoration:none;font-weight:700;font-size:17px;padding:15px;border-radius:16px}
+  @media(max-width:760px){.sticky-cta.show{display:block}body{padding-bottom:0}}
+  /* faq */
+  .faq-item{border-bottom:1px solid var(--line);padding:20px 0}
+  .faq-q{font-weight:700;font-size:18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;list-style:none}
+  .faq-q::-webkit-details-marker{display:none}
+  .faq-q::after{content:"+";font-size:24px;color:var(--accent);flex:none;font-weight:400}
+  details[open] .faq-q::after{content:"–"}
+  .faq-a{color:var(--sub);margin-top:10px;max-width:44em;font-size:16px}
+  /* footer */
+  footer{border-top:1px solid var(--line);padding:36px 0;color:var(--faint);font-size:14px}
+  .foot{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center}
+  footer a{color:var(--sub);text-decoration:none}
+  footer a:hover{color:var(--ink)}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-inner">
+    <a class="brand" href="#">
+      <span class="brand-mark">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l5 5 9-11" stroke="white" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      LotCheck
+    </a>
+    <a class="nav-cta" href="https://apps.apple.com/ca/app/id6822343146">Get the app</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Toronto only</span>
+      <h1>Know what you can build on any Toronto lot.</h1>
+      <p class="lede">Type an address. Get the zoning envelope, approval odds drawn from 33,992 past variance decisions, laneway suite eligibility, and a development-charge estimate. Your first 3 checks are free, no credit card.</p>
+      <div class="cta-row">
+        <a class="btn-store" href="https://apps.apple.com/ca/app/id6822343146">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8.98-.2 1.92-.87 3.03-.83 1.32.11 2.31.63 2.96 1.57-2.71 1.63-2.26 5.21.45 6.21-.5 1.31-1.14 2.61-2.52 3.22zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+          Download on the App Store
+        </a>
+      </div>
+      <p class="micro"><strong>Free</strong> · 3 full lot checks · No credit card · iPhone</p>
+    </div>
+    <div class="phone-wrap">
+      <div class="phone">
+        <img src="shots/03-verdict.png" alt="LotCheck verdict for a Toronto lot: zone, approval odds, and laneway eligibility">
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="proof">
+  <div class="wrap proof-grid">
+    <div><div class="proof-num">33,992</div><div class="proof-label">past variance decisions analyzed</div></div>
+    <div><div class="proof-num">3 <span>free</span></div><div class="proof-label">full lot checks, no card required</div></div>
+    <div><div class="proof-num">11 m</div><div class="proof-label">example: max height on a typical lot</div></div>
+  </div>
+</div>
+
+<section class="block">
+  <div class="wrap">
+    <p class="kicker">How it works</p>
+    <h2>An answer in under a minute.</h2>
+    <p class="section-sub">No bylaw PDFs, no planner retainer, no guessing from a zoning map.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Search the address</h3>
+        <p>Pick from verified Toronto addresses. A checkmark confirms it, so a typo never burns one of your free checks.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Read the verdict</h3>
+        <p>Zone, max height, FSI, approval odds for your project type, laneway suite eligibility, and development charges, on one screen.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Share the report</h3>
+        <p>Send a link anyone can open. Partners, clients, and lenders see the same numbers you do.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" style="padding-top:0">
+  <div class="wrap">
+    <p class="kicker">What you get</p>
+    <h2>Everything a planner would tell you, instantly.</h2>
+    <p class="section-sub">Each verdict is computed from Toronto's zoning bylaws and the real outcomes of past Committee of Adjustment decisions.</p>
+    <div class="features">
+      <div class="feature">
+        <span class="tag">Zoning</span>
+        <h3>Buildable envelope</h3>
+        <p>Zone, permitted uses, max height, and FSI for the lot, including the special rules that override base zoning.</p>
+      </div>
+      <div class="feature">
+        <span class="tag">Odds</span>
+        <h3>Approval odds</h3>
+        <p>Your project's chance at the Committee of Adjustment, drawn from 33,992 decided variances, with the median decision time.</p>
+      </div>
+      <div class="feature">
+        <span class="tag">Laneway</span>
+        <h3>Laneway suite check</h3>
+        <p>Whether the lot qualifies for a laneway suite, the fastest way to add a second dwelling in Toronto.</p>
+      </div>
+      <div class="feature">
+        <span class="tag">Costs</span>
+        <h3>Development charges</h3>
+        <p>A line-item estimate of city development charges before you commit to a design or an offer.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" style="padding-top:0">
+  <div class="wrap">
+    <p class="kicker">Inside the app</p>
+    <h2>Built for the jobsite, not the desk.</h2>
+    <p class="section-sub">Big type, one-thumb actions, readable in bright sunlight.</p>
+    <div class="screens">
+      <div class="shot">
+        <div class="phone"><img src="shots/02-home.png" alt="LotCheck home: search any Toronto address"></div>
+        <p><strong>Search</strong>Verified Toronto addresses, picked from a list.</p>
+      </div>
+      <div class="shot">
+        <div class="phone"><img src="shots/03-verdict.png" alt="LotCheck verdict: zone, height, approval odds"></div>
+        <p><strong>Verdict</strong>Zone, height, FSI, and approval odds on one screen.</p>
+      </div>
+      <div class="shot">
+        <div class="phone"><img src="shots/08-saved.png" alt="LotCheck saved lots"></div>
+        <p><strong>Saved</strong>Every lot you check, kept and shareable.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" style="padding-top:0">
+  <div class="wrap">
+    <p class="kicker">Pricing</p>
+    <h2>Start free. Upgrade when lots get serious.</h2>
+    <p class="section-sub">Three full checks on the house. No credit card, no trial trap.</p>
+    <div class="plans">
+      <div class="plan">
+        <h3>Free</h3>
+        <div class="plan-price">$0</div>
+        <div class="plan-per">forever</div>
+        <ul>
+          <li>3 full lot checks</li>
+          <li>Shareable report links</li>
+          <li>Zoning + approval odds</li>
+        </ul>
+      </div>
+      <div class="plan hot">
+        <span class="plan-flag">Most popular</span>
+        <h3>Pro Annual</h3>
+        <div class="plan-price">$279.99</div>
+        <div class="plan-per">per year · $23.33/mo billed annually · save 44%</div>
+        <ul>
+          <li>Unlimited lot checks</li>
+          <li>7-day free trial</li>
+          <li>Shareable report links</li>
+          <li>Priority address verification</li>
+        </ul>
+        <p class="fine">Starts with a 7-day free trial, then $279.99/yr unless cancelled. Annual plan billed upfront, non-refundable. Cancel anytime to stop renewal.</p>
+      </div>
+      <div class="plan">
+        <h3>Pro Monthly</h3>
+        <div class="plan-price">$41.99</div>
+        <div class="plan-per">per month</div>
+        <ul>
+          <li>Unlimited lot checks</li>
+          <li>Shareable report links</li>
+          <li>Cancel anytime</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" style="padding-top:0">
+  <div class="wrap">
+    <div class="capture">
+      <h2>Toronto lot alerts</h2>
+      <p>New buildable lots in Toronto, in your inbox. One email when a lot worth your attention hits the data. No spam, ever.</p>
+      <form id="alerts-form">
+        <input type="email" id="alerts-email" placeholder="you@example.com" required aria-label="Email address">
+        <button type="submit">Notify me</button>
+      </form>
+      <p id="capture-msg" role="status"></p>
+      <p class="note">Free. Unsubscribe anytime.</p>
+    </div>
+  </div>
+</section>
+
+<section class="block" style="padding-top:0">
+  <div class="wrap" style="max-width:760px">
+    <p class="kicker">FAQ</p>
+    <h2>Questions, answered.</h2>
+    <div style="margin-top:28px">
+      <details class="faq-item">
+        <summary class="faq-q">Which areas does LotCheck cover?</summary>
+        <p class="faq-a">Toronto only, for now. Every address is verified against the city's data before a check runs, so you'll know immediately if a lot is outside coverage. That check is free.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Where does the data come from?</summary>
+        <p class="faq-a">Toronto's zoning bylaws for the envelope, and 33,992 decided Committee of Adjustment variances for the approval odds and timelines. It's the same public record a planner would pull, computed in seconds instead of days.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">What do I get for free?</summary>
+        <p class="faq-a">Three complete lot checks, including the zoning envelope, approval odds, laneway check, and development-charge estimate, plus shareable report links. No credit card required.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Is this a substitute for a planner or lawyer?</summary>
+        <p class="faq-a">No. LotCheck tells you what's likely before you spend money on professionals. Confirm anything you act on with a licensed planner.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Can I cancel my subscription?</summary>
+        <p class="faq-a">Yes, anytime, from your iPhone settings. The annual plan is billed upfront and is non-refundable; cancelling stops the next renewal.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="block" style="padding-top:0">
+  <div class="wrap">
+    <div class="final">
+      <h2>Your next lot is one search away.</h2>
+      <p>Three full checks free. No credit card. Know before you offer.</p>
+      <a class="btn-store" href="https://apps.apple.com/ca/app/id6822343146">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8.98-.2 1.92-.87 3.03-.83 1.32.11 2.31.63 2.96 1.57-2.71 1.63-2.26 5.21.45 6.21-.5 1.31-1.14 2.61-2.52 3.22zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+        Download on the App Store
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 LotCheck. Toronto, Ontario.</span>
+    <span><a href="#">Terms</a> &nbsp;·&nbsp; <a href="#">Privacy</a></span>
+  </div>
+</footer>
+
+<div class="sticky-cta" id="sticky-cta">
+  <a href="https://apps.apple.com/ca/app/id6822343146">Get the app · 3 free checks</a>
+</div>
+
+<script>
+  // Sticky mobile CTA: appears after scrolling past the hero.
+  (function () {
+    var bar = document.getElementById('sticky-cta');
+    var hero = document.querySelector('.hero');
+    function onScroll() {
+      var past = hero.getBoundingClientRect().bottom < 0;
+      bar.classList.toggle('show', past);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+</script>
+<script>
+  // Toronto lot alerts signup via Dispatch.
+  var PUBLICATION_ID = "cmv75wx1r0000y4sw7pxumt7i";
+  document.getElementById('alerts-form').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    var msg = document.getElementById('capture-msg');
+    var email = document.getElementById('alerts-email').value.trim();
+    if (!PUBLICATION_ID) {
+      msg.style.color = '#FDBA74';
+      msg.textContent = 'Alerts launch soon. The app is live on the App Store today.';
+      return;
+    }
+    msg.style.color = '#B9BEC6';
+    msg.textContent = 'Subscribing…';
+    try {
+      var res = await fetch('https://dispatch.nshipyard.com/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ publicationId: PUBLICATION_ID, email: email, consent_source: 'lotcheck-landing' })
+      });
+      if (res.ok) {
+        msg.style.color = '#6EE7B7';
+        msg.textContent = 'You are in. Check your inbox to confirm.';
+        document.getElementById('alerts-email').value = '';
+      } else {
+        throw new Error('bad status');
+      }
+    } catch (err) {
+      msg.style.color = '#FCA5A5';
+      msg.textContent = 'Something went wrong. Try again in a moment.';
+    }
+  });
+</script>
+</body>
+</html>
